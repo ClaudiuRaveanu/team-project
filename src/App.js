@@ -4,8 +4,7 @@ import React from 'react';
 import {
     BrowserRouter as Router,
     Switch,
-    Route,
-    Link
+    Route
 } from "react-router-dom";
 
 import LoginScreen from './Screens/LoginScreen';
@@ -14,6 +13,9 @@ import DashboardScreen from './Screens/Dashboard';
 import BooksView from './Screens/BooksView';
 import Book_a_book from './Screens/Book_a_book';
 import AddBook from './Screens/AddBook';
+import AddReview from './Screens/AddReview';
+import ViewWishlist from './Screens/ViewWishlist';
+import ViewBook from './Screens/ViewBook';
 
 export function getCurrentDate(separator='') {
     let myCurrentDate = new Date();
@@ -43,8 +45,17 @@ return (
             <Route path="/signin">
                 <LoginScreen/>
             </Route>
-            <Route exact path="/view-books">
+            <Route path="/view-books">
                 <BooksView/>
+            </Route>
+            <Route path="/add-review">
+                <AddReview/>
+            </Route>
+            <Route path="/wishlist">
+                <ViewWishlist/>
+            </Route>
+            <Route path="/view-book">
+                <ViewBook />
             </Route>
         </Switch>
     </Router>

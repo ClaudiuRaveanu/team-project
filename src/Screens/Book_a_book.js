@@ -1,5 +1,5 @@
 import React from 'react';
-import { Paper, Box, Button, Typography, AppBar, Toolbar, Grid, TextField, Link, FormControlLabel, makeStyles, CardActionArea } from '@material-ui/core';
+import { Paper , Button, Typography, AppBar, Toolbar, Grid, TextField, Link, makeStyles } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -10,8 +10,8 @@ export default function Book_a_book() {
     const paper2 = { padding: '40px 40px', width: '50vw', margin: '40px auto', flexDirection:'column', display: 'flex'}
     const paper3 = { padding: '0px 0px', width: '50%', margin: '0px auto', flexDirection:'column', display: 'flex'}
     const btnStyle = { width: '12vw', background: '#3f51b5', color: '#FFFFFF', height: '2.4vw', marginLeft: '40px', marginRight: '40px'}
-    const boxStyle = { background:'#FFFFFF', textAlign:'center', padding:'2px 2px', marginTop:9, justifyContent:'center', height:500 }
-    const narrowBox = { background:'#FFFFFF', textAlign:'center', padding:'0px 10px', width:'15%', margin:0, height:'100%'}
+    // const boxStyle = { background:'#FFFFFF', textAlign:'center', padding:'2px 2px', marginTop:9, justifyContent:'center', height:500 }
+    // const narrowBox = { background:'#FFFFFF', textAlign:'center', padding:'0px 10px', width:'15%', margin:0, height:'100%'}
     const container = { display: 'flex', justifyContent: 'center', fontSize:'1.12vw' }
 
     const useStyles = makeStyles({
@@ -22,7 +22,7 @@ export default function Book_a_book() {
         media: {
             height: 0,
             width: 'auto',
-            paddingTop: '143%',
+            paddingTop: '150%',
             objectFit: 'cover',
         },
         body: {
@@ -44,8 +44,8 @@ export default function Book_a_book() {
                 <Toolbar gutterBottom>
                     <Paper style={paperStyle} elevation={0}>
                         <Button style={btnStyle} href="/">Acasă</Button>
-                        <Button href="/signin" style={btnStyle}>Intră în cont</Button>
-                        <Typography variant='h6' display='block' style={container}>Biblioteca de la colț de Rai</Typography>
+                        <Button href="/wishlist" style={btnStyle}>Wishlist</Button>
+                        <Typography variant='h6' display='block' style={container}>Bibliotech UVT</Typography>
                         <Button href="/add-book" style={btnStyle}>Adaugă carte</Button>
                         <Button href="/view-books" style={btnStyle}>Cărți</Button>
                     </Paper>
@@ -62,25 +62,25 @@ export default function Book_a_book() {
                         <Autocomplete 
                             id="combo-box-demo"
                             disableClearable
-                            options={['Option 1','Option 2']}
-                            style={{ width:'75%', marginBottom:'30px' }}
+                            options={['2062. Lumea creata de inteligenta artificiala', 'Platon']}
+                            style={{ width:'112%', marginBottom:'30px' }}
                             renderInput={(params) => <TextField {...params} label="Alege o carte" variant="outlined" />}>
                         </Autocomplete>
-                        <Grid align="left" style={{ marginBottom:30 }}>
-                            <TextField InputProps={{readOnly:true,}} label='Editură' defaultValue='Editură' variant='outlined' style={{ width:'30%' }}></TextField>
+                        <Grid align="left" style={{ marginBottom:30, flexDirection:'row', display:'flex', width:'112%' }}>
+                            <TextField InputProps={{ readOnly:true, }} label='Editură' defaultValue='RAO' variant='outlined' style={{ width:'50%' }}></TextField>
+                            <TextField InputProps={{ readOnly:true, }} label='Autor' defaultValue='TOBY WALSH' variant='outlined' style={{ marginLeft:30, width:'62%'}}></TextField>
                         </Grid>
-                        <Grid align="left" style={{ marginBottom:30, width:'50%' }}>
-                            <TextField InputProps={{readOnly:true,}} label='Autor' defaultValue='Autor' variant='outlined'></TextField>
-                        </Grid>
-                        <Grid align="left" style={{ marginBottom:0, width:'75%' }}>
+                        <Grid align="left" style={{ marginBottom:0, width:'112%', textAlign:'justify' }}>
                         <TextField
                             id="outlined-multiline-static"
                             label="Descriere"
                             multiline
-                            rows={4}
-                            defaultValue="Descriere carte"
+                            InputProps={{ readOnly:true, }}
+                            rows={9}
+                            defaultValue="2062 este anul in care vom avea roboti la fel de inteligenti ca noi. Acest lucru este sustinut de majoritatea expertilor in domeniile inteligentei artificiale si roboticii. Dar cum va arata acest viitor? Cum se va desfasura viata pe aceasta planeta? Profesorul Toby Walsh analizeaza impactul pe care inteligenta artificiala il va avea asupra muncii, razboiului, politicii, economiei, vietii cotidiene si mortii. Pe baza unei intelegeri profunde a tehnologiei si a implicatiilor acesteia, 2062 descrie alegerile pe care trebuie sa le facem astazi, pentru a ne asigura ca viitorul va ramane luminos."
                             variant="outlined"
-                            style={{ width:'150%' }}
+                            fullWidth
+                            style={{ textAlign:'justify' }}
                         />
                         </Grid>
                         </Paper>
@@ -88,7 +88,7 @@ export default function Book_a_book() {
                         <Paper style={{ padding: '0px 0px', width: '50%', margin: '0px auto', flexDirection:'column', display: 'flex' }} elevation={0}>
                             <Grid align="right" style={{ marginBottom:0 }}>
                                 <Card className={classes.root}>
-                                    <CardMedia className={classes.media} image="https://i.imgur.com/pHghMrP.jpg"></CardMedia>
+                                    <CardMedia className={classes.media} image="https://i.imgur.com/8zpua4U.jpg"></CardMedia>
                                 </Card>
                             </Grid>
                         </Paper>

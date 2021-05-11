@@ -1,32 +1,28 @@
 import React from 'react';
 
-import { TextField, Grid,Paper, Button, Typography, Link, Checkbox, FormControlLabel } from '@material-ui/core'
+import { TextField, Grid,Paper, Button, Typography, Link } from '@material-ui/core';
+import MuiPhoneNumber from 'material-ui-phone-number';
 
-
-
-const initialValues = {
-    email:'',
-    password:''
-}
+// const initialValues = {
+//     email:'',
+//     password:''
+// }
 
 const RegisterScreen = () => {
     const paperStyle = { padding: '40px 40px', width: 400, margin: '64px auto' }
     const btnStyle = { marginTop:16 , flex:1, width: 400}
     const container = { display: 'flex', justifyContent: 'center', marginTop:40}
-    const btncontainer = { display: 'flex', justifyContent: 'center', }
+    // const btncontainer = { display: 'flex', justifyContent: 'center', }
 
-    const [checked, setChecked] = React.useState(false);
+    // const [checked, setChecked] = React.useState(false);
 
-  const handleChange = (event) => {
-    setChecked(event.target.checked);
-  };
-    
-    const onSubmit = (values) =>{
-        console.log(values)
-    }
+    // const handleChange = (event) => {
+    //     setChecked(event.target.checked);
+    // };
+
     return(
         <Grid>
-            <Typography variant='h6' style={container}>Biblioteca de la colț de Rai</Typography>
+            <Typography variant='h6' style={container}>Bibliotech UVT</Typography>
             <Paper elevation={5} style={paperStyle}>
                 <Grid align='center'>
                     <Typography variant='h6'>Înregistrare</Typography>
@@ -89,8 +85,31 @@ const RegisterScreen = () => {
                 id="password"
                 autoComplete="current-password"
                 />
+                <MuiPhoneNumber
+                name="phone"
+                label="Telefon"
+                id="phone"
+                type="phone"
+                autoComplete="phone"
+                required
+                defaultCountry="ro"
+                variant="outlined"
+                margin="normal"
+                fullWidth>
+                </MuiPhoneNumber>
 
-                <FormControlLabel
+                <TextField 
+                label="Număr matricol" 
+                type='id_nr' 
+                fullWidth
+                variant="outlined"
+                margin="normal"
+                required
+                autoComplete="id_nr"
+                autoFocus
+                />
+
+                {/* <FormControlLabel
                         control={
                         <Checkbox
                             checked={checked}
@@ -100,13 +119,13 @@ const RegisterScreen = () => {
                         />
                         }
                         label="Doresc să primesc pe e-mail anunțuri și actualizări"
-                    />
+                    /> */}
 
                 
                 
-                <Button type='Submit' style={btnStyle} variant='contained' color='primary' >Trimite</Button>
+                <Button type='Submit' style={btnStyle} variant='contained' color='primary'>Trimite</Button>
                 <Grid container justify='flex-end' style={{marginTop:16}}>
-                    <Link href="/">
+                    <Link href="/signin">
                         Ai deja un cont?
                     </Link>
                 </Grid>   

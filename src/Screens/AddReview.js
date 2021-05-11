@@ -5,16 +5,23 @@ import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import {Checkbox, FormControlLabel } from '@material-ui/core';
 
-export default function AddBook() {
+export default function AddReview() {
 
     const paperStyle = { padding: '0px 0px', width: 'auto', margin: '4px auto', textAlign: 'top-center', background: 'transparent', display: 'flex' }
     const btnStyle = { width: '12vw', background: '#3f51b5', color: '#FFFFFF', height: '2.4vw', marginLeft: '40px', marginRight: '40px'}
     // const boxStyle = { background:'#FFFFFF', textAlign:'center', padding:'2px 2px', marginTop:9, justifyContent:'center', height:500 }
     // const narrowBox = { background:'#FFFFFF', textAlign:'center', padding:'0px 10px', width:'15%', margin:0, height:'100%'};
     const container = { display: 'flex', justifyContent: 'center', fontSize:'1.12vw' }
-    const paper2 = { padding: '40px 40px', width: '56vw', margin: '40px auto', flexDirection:'column', display: 'flex'}
+    const paper2 = { padding: '40px 40px', width: '50vw', margin: '40px auto', flexDirection:'column', display: 'flex'}
     const paper3 = { padding: '0px 0px', width: '50%', margin: '0px auto', flexDirection:'column', display: 'flex'}
+
+    const [checked, setChecked] = React.useState(false);
+
+    const handleChange = (event) => {
+        setChecked(event.target.checked);
+    };
 
     const useStyles = makeStyles((theme) => ({
         root: {
@@ -46,25 +53,13 @@ export default function AddBook() {
 
     const classes = useStyles();
 
-    const [values, setValues] = React.useState({
+    const [values] = React.useState({
         image_link: '',
     });
 
-    const handleImage = (lnk) => (event) => {
-        setValues({ ...values, [lnk]: event.target.value });
-    };
-
-    const ctgs = [{ name: 'Acțiune'}, {name: 'Comedie'}, {name: 'Psihologie'}, {name: 'Istorie'}, {name: 'Filozofie'}, {name: 'Religie'}, {name: 'Poezie, teatru, studii literare'},
-                {name: 'Ficțiune'}, {name: 'Artă, arhitectură'}, {name: 'Biografii, memorii, jurnale'}, {name: 'Lingvistică, dicționare'}, {name: 'Enciclopedii'},
-                {name: "Astronomie, spațiu, timp"}];
-
-    const options = ctgs.map((option) => {
-        const firstLetter = option.name[0].toUpperCase();
-
-        return {
-            firstLetter: /[0-9]/.test(firstLetter) ? '0-9' : firstLetter, ...option,
-        };
-    });
+    // const handleImage = (lnk) => (event) => {
+    //     setValues({ ...values, [lnk]: event.target.value });
+    // };
 
     return (
         <Grid container direction="column">
@@ -73,8 +68,8 @@ export default function AddBook() {
                 <Toolbar gutterBottom>
                     <Paper style={paperStyle} elevation={0}>
                         <Button href="/" style={btnStyle}>Acasă</Button>
-                        <Button href="/wishlist" style={btnStyle}>Wishlist</Button>
-                        <Paper style={{ width:'auto', padding:'5px 40px', marginLeft:'40px', marginRight:'40px' }}><Typography variant='h6' style={container}>Bibliotech UVT</Typography></Paper>
+                        <Button href="/add-book" style={btnStyle}>Adaugă carte</Button>
+                        <Typography variant='h6' style={container}>Bibliotech UVT</Typography>
                         <Button href="/view-books" style={btnStyle}>Cărți</Button>
                         <Button style={btnStyle} href="/book-a-book">Rezervă o carte</Button>
                     </Paper>
@@ -82,30 +77,34 @@ export default function AddBook() {
             </AppBar>
             <Paper elevation={5} style={paper2}>
                 <Grid align="center" style={{ marginBottom:40 }}>
-                    <Link style={{ fontSize:'25px' }} variant='string' underline='always' color='textPrimary'>Adaugă o carte</Link>
+                    <Link style={{ fontSize:'25px' }} variant='string' underline='always' color='textPrimary'>Adaugă o recenzie</Link>
                 </Grid>
                 <form>
                     <Paper elevation={0} style={{padding: '0px 0px', width: 'auto', margin: '0px auto', textAlign: 'center', background: 'transparent', display: 'flex'}}>
 
                         <Paper style={paper3} elevation={0}>
-                        <Grid align="left" style={{ marginBottom:30, width:'125%' }}>
-                            <TextField label='Titlu' 
-                            variant='outlined' style={{ width:'100%'}}></TextField>
-                        </Grid>
-                        <Grid align="left" style={{ marginBottom:30, flexDirection:'row', display:'flex', width:'125%' }}>
-                            <TextField label='Editură' variant='outlined' style={{ width:'65%' }}></TextField>
-                            <TextField label='Autor' variant='outlined' style={{ marginLeft:30, width:'65%'}}></TextField>
-                        </Grid>
-                        <Grid align="left" style={{ marginBottom:30, width:'125%', flexDirection:'row', display:'flex' }}>
-                            <TextField label='Link imagine copertă' 
-                            variant='outlined' style={{ width:'90%'}}
-                            onChange={handleImage('image_link')} aria-label="cover"></TextField>
-                            <TextField label='Număr pagini' display='inline' type="number" variant='outlined' style={{ marginTop:0, marginLeft:30, width:'35%'}}></TextField>
+                        <Autocomplete 
+                            id="combo-box-demo"
+                            disableClearable
+                            options={['Platon','Option 2']}
+                            style={{ width:'125%', marginBottom:'30px' }}
+                            renderInput={(params) => <TextField {...params} label="Alege o carte" variant="outlined" />}>
+                        </Autocomplete>
+                        <Grid align="left" style={{ marginTop:0, width:'125%', marginBottom:30, display:'flex', flexDirection:'row' }}>
+                            <TextField label="Titlu recenzie" variant="outlined" style={{ width:'90%', marginRight:30 }}></TextField>
+
+                            <Autocomplete 
+                            id="combo-box-demo"
+                            disableClearable
+                            options={['1','2','3','4','5','6','7','8','9','10']}
+                            style={{ width:'30%' }}
+                            renderInput={(params) => <TextField {...params} label="Notă oferită" variant="outlined" />}>
+                            </Autocomplete>
                         </Grid>
                         <Grid align="left" style={{ marginBottom:30, width:'125%', textAlign:'justify' }}>
                         <TextField
                             id="outlined-multiline-static"
-                            label="Descriere"
+                            label="Părerea ta"
                             multiline
                             rows={5}
                             variant="outlined"
@@ -113,16 +112,20 @@ export default function AddBook() {
                             style={{ textAlign:'justify' }}
                         />
                         </Grid>
-                        <Grid align="left" style={{ marginBottom:0, width:'125%' }} className={classes.customAuto}>
-                            <Autocomplete
-                            id="tags"
-                            options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
-                            groupBy={(option) => option.firstLetter}
-                            getOptionLabel={(option) => option.name}
-                            filterSelectedOptions
-                            renderInput={(params) => (
-                                <TextField {...params} variant="outlined" label="Genuri"/>
-                            )}/>
+                        <Grid align="left" style={{ marginBottom:0, width:'125%', display:'flex', flexDirection:'row' }} className={classes.customAuto}>
+                            
+
+                            <FormControlLabel
+                            control={
+                            <Checkbox
+                                checked={checked}
+                                onChange={handleChange}
+                                name="checkedB"
+                                color="primary"
+                            />
+                            }
+                            label="Doresc să rămân anonim"
+                            />
                         </Grid>
                         </Paper>
 
@@ -136,9 +139,10 @@ export default function AddBook() {
 
                     </Paper>
                     <Grid align="center" style={{ marginTop:30, marginBottom:0 }}>
-                        <Button style={{ width:'35%', background: '#3f51b5', color: '#FFFFFF'}} type='Submit' onClick={console.log("Hi there!")}>Adaugă cartea</Button>
+                        <Button style={{ width:'35%', background: '#3f51b5', color: '#FFFFFF'}}>Adaugă recenzie</Button>
                     </Grid>
                 </form>
+                <Grid></Grid>
             </Paper>
         </Grid>
     );

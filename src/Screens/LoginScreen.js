@@ -1,20 +1,16 @@
 import React from 'react';
-import { TextField, Grid,Paper, Button, Typography, Link, Checkbox, FormControlLabel, createMuiTheme } from '@material-ui/core'
-import { light } from '@material-ui/core/styles/createPalette';
+import { TextField, Grid,Paper, Button, Typography, Link, Checkbox, FormControlLabel } from '@material-ui/core';
 
-
-
-
-const initialValues = {
-    email:'',
-    password:''
-}
+// const initialValues = {
+//     email:'',
+//     password:''
+// }
 
 const LoginScreen = () => {
     const paperStyle = { padding: '40px 40px', width: 400, margin: '64px auto'}
     const btnStyle = { marginTop:16 , flex:1, width:400}
     const container = { display: 'flex', justifyContent: 'center', marginTop:40}
-    const btncontainer = { display: 'flex', justifyContent: 'center', }
+    // const btncontainer = { display: 'flex', justifyContent: 'center', }
 
     const [checked, setChecked] = React.useState(false);
 
@@ -22,12 +18,12 @@ const LoginScreen = () => {
     setChecked(event.target.checked);
   };
     
-    const onSubmit = (values) =>{
-        console.log(values)
-    }
+    // const onSubmit = (values) =>{
+    //     console.log(values)
+    // }
     return(
         <Grid>
-            <Typography variant='h6' style={container}>Biblioteca de la colț de Rai</Typography>
+            <Typography variant='h6' style={container}>Bibliotech UVT</Typography>
             <Paper elevation={5} style={paperStyle}>
                 <Grid align='center'>
                     <Typography variant='h6'>Intrare în cont</Typography>
@@ -74,9 +70,9 @@ const LoginScreen = () => {
                         Ai uitat parola?
                         </Link>
                     </Grid>
-                    <Grid xs>
+                    <Grid xs align="right">
                         <Link href="/register">
-                        Don't have an accout?Sign Up
+                            Nu ai cont?
                         </Link>
                     </Grid>
 
